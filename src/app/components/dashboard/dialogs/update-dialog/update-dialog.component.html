@@ -1,0 +1,36 @@
+<div *ngIf="displayDialog" class="overlay">
+    <div class="dialog absolute bg-white border-radius">
+        <div class="header background-red-dehn p-2">
+            <h1 class="text-2xl text-white font-bold text-center w-full">UPDATE TASK</h1>
+        </div>
+
+        <div class="content">
+            <!-- Task to edit ID form -->
+            <div>
+                <form class="p-4" [formGroup]="taskSearchForm">
+                    <input formControlName="id" placeholder="Enter desired task ID" type="number"
+                        class="border-radius border-2 border-gray-300 w-full p-2"
+                        [style.border-color]="!taskToEdit ? 'red' : ''">
+                    <div class="text-red-500 text-sm mt-1" *ngIf="!taskToEdit">
+                        <span *ngIf="!taskToEdit">There is no Task with given ID</span>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Edit task form -->
+            <app-add-update-form [hidden]="!taskToEdit" #updateForm (formChange)="form = updateForm.form">
+            </app-add-update-form>
+
+            <!-- Cancel and Update buttons -->
+            <div class="flex justify-end px-4 pb-4 gap-3">
+                <button class="btn-secondary border-radius border-2 border-gray-300 px-2"
+                    (click)="onCancelClick()">Cancel
+                </button>
+                <button class="btn-main background-red-dehn text-white border-radius px-2"
+                    [disabled]="form.invalid || !taskToEdit"
+                    [class.disabled]="form.invalid || !taskToEdit" (click)="onConfirmClick()">Update
+                </button>
+            </div>
+        </div>
+    </div>
+    <div>

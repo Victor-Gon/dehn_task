@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'src/assets/theme/general';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.background-red-dehn {
+    background-color: $dehnRed;
+}
+
+.text-white {
+    color: $textColor;
+}
+
+.border-radius {
+    border-radius: $borderRadius;
+}
+
+.btn-main:hover:not(.disabled) {
+    background: color-mix(in srgb, $dehnRed 60%, white);
+}

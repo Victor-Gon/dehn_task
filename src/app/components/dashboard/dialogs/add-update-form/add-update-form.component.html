@@ -1,0 +1,53 @@
+<form class="h-full flex flex-col gap-2 p-4" [formGroup]="form">
+    <h3 class="text-lg font-semibold">Task data</h3>
+
+    <!-- Task title -->
+    <div>
+        <input type="text" id="title" formControlName="title" placeholder="Title"
+            class="border-radius border-2 border-gray-300 w-full p-2"
+            [style.border-color]="form.get('title')?.invalid ? 'red' : ''">
+        <div class="text-red-500 text-sm mt-1" *ngIf="form.get('title')?.invalid">
+            <span *ngIf="form.get('title')?.errors?.['required']">Title is required</span>
+        </div>
+    </div>
+
+    <!-- Task description -->
+    <div>
+        <textarea id="description" formControlName="description" placeholder="Description"
+            class="border-radius border-2 border-gray-300 w-full p-2"
+            [style.border-color]="form.get('description')?.invalid ? 'red' : ''"></textarea>
+        <div class="text-red-500 text-sm" *ngIf="form.get('description')?.invalid">
+            <span *ngIf="form.get('description')?.errors?.['required']">Description is required</span>
+        </div>
+    </div>
+
+    <!-- Task due date -->
+    <div>
+        <div class="flex flex-row gap-2">
+            <label class="flex items-center min-w-fit" for="dueDate">Due Date:</label>
+            <input type="date" id="dueDate" formControlName="dueDate"
+                class="border-radius border-2 border-gray-300 w-full p-2"
+                [style.border-color]="form.get('dueDate')?.invalid ? 'red' : ''">
+        </div>
+
+        <div class="text-red-500 text-sm mt-1" *ngIf="form.get('dueDate')?.invalid">
+            <span *ngIf="form.get('dueDate')?.errors?.['required']">Due date is required</span>
+        </div>
+    </div>
+
+    <!-- Task status -->
+    <div>
+        <div class="flex flex-row gap-2">
+            <label class="flex items-center min-w-fit" for="status">Status:</label>
+            <select id="status" formControlName="status"
+                class="border-radius border-2 border-gray-300 w-full p-2"
+                [style.border-color]="form.get('status')?.invalid ? 'red' : ''">
+                <option *ngFor="let status of object.values(statusEnum)" [value]="status">{{ status }}</option>
+            </select>
+        </div>
+
+        <div class="text-red-500 text-sm mt-1" *ngIf="form.get('status')?.invalid">
+            <span *ngIf="form.get('status')?.errors?.['required']">Status is required</span>
+        </div>
+    </div>
+</form>

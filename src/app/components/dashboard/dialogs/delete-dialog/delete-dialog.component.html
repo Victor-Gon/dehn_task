@@ -1,0 +1,32 @@
+<div *ngIf="displayDialog" class="overlay">
+    <div class="dialog absolute bg-white border-radius">
+        <div class="header background-red-dehn p-2">
+            <h1 class="text-2xl text-white font-bold text-center w-full">DELETE TASK</h1>
+        </div>
+
+        <div class="content">
+            <!-- Task to delete ID form -->
+            <form class="h-full p-4" [formGroup]="form">
+                <input formControlName="id" placeholder="ID" type="number"
+                    class="border-radius border-2 border-gray-300 w-full p-2"
+                    [style.border-color]="form.get('id')?.invalid ? 'red' : ''">
+                <div class="text-red-500 text-sm mt-1" *ngIf="form.get('id')?.invalid">
+                    <span *ngIf="form.get('id')?.errors?.['required']">ID is required</span>
+                    <span *ngIf="form.get('id')?.errors?.['idNotFound']">ID does not exist</span>
+                </div>
+            </form>
+
+            <!-- Cancel and Delete buttons -->
+            <div class="flex justify-end px-4 pb-4 gap-3">
+                <button class="btn-secondary border-radius border-2 border-gray-300 px-2"
+                    (click)="onCancelClick()">Cancel
+                </button>
+                <button class="btn-main background-red-dehn text-white border-radius px-2"
+                    [disabled]="form.invalid"
+                    [class.disabled]="form.invalid"
+                    (click)="onConfirmClick()">Delete
+                </button>
+            </div>
+        </div>
+    </div>
+<div>
