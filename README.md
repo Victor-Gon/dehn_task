@@ -33,7 +33,6 @@ Make sure you have the following software installed on your machine:
 
 Once dependencies are isntalled, start development server:
     
-    ```bash
     ng serve
 
 Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
