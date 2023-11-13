@@ -36,3 +36,17 @@ Once dependencies are isntalled, start development server:
     ng serve
 
 Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Design Decisions
+### UML Class Diagram
+The initial UML class diagram for the TaskManager project is available in the media folder. It provides an overview of the classes present in this project and their relationships.
+
+### TaskService
+CRUD service for operations on tasks. It interacts with the LocalStorageService to load and store data.
+Designed as a singleton service, so that all components can access the same collection of tasks.
+
+### Dialogs
+The AbstractDialog class implements the base dialog functionality for other dialogs to extend. Both AddDialogComponent and UpdateDialogComponent use AddUpdateFormComponent to manage the forms for adding and updating tasks.
+
+### Application Design
+TaskManager is designed as a simple Single Page Application (SPA) with a main dashboard and popup dialogs for various actions. The application's visual style is inspired by the DEHN webpage.
